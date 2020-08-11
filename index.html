@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Time</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .wrapper {
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    span {
+      font-size: calc(100px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+      font-family: 'IBM 3270', 'Fira Code', monospace;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello World!</h1>
+  <div class="wrapper">
+    <div class="date">
+      <span id="date"></span><span id="time"></span>
+    </div>
+  </div>
+  <script>
+    const el = document.getElementById('time');
+    const updateClock = () => {
+      const date = new Date();
+      const milliseconds = date.getMilliseconds();
+      const mill = milliseconds.toString().padStart(3, '0').slice(0, -1);;
+      el.innerText = date.toLocaleTimeString() + ':' + mill;
+    };
+
+    window.setInterval('updateClock()', 10);
+  </script>
 </body>
+
 </html>
